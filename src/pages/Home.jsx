@@ -12,9 +12,25 @@ function Home() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto mt-8">
+    <div className="max-w-5xl mx-auto px-4 py-8">
+
+      <section className="text-center mb-10">
+        <h1 className="text-5xl font-bold text-gray-800 mb-4">
+          AI-Powered Guest Review Analysis
+        </h1>
+
+        <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          StayInsight AI helps homestay owners analyze guest
+          reviews, identify customer sentiment, detect key
+          service issues, and generate intelligent response
+          suggestions using Artificial Intelligence.
+        </p>
+      </section>
+
       <ReviewForm onAnalyze={handleAnalyze} />
+
       <ResultTable result={result} />
+
     </div>
   );
 }
