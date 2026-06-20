@@ -1,46 +1,52 @@
-function ResultTable({ result }) {
-  if (!result) return null;
-
-  const badgeColor = {
-    Positive: "bg-green-100 text-green-700",
-    Neutral: "bg-yellow-100 text-yellow-700",
-    Negative: "bg-red-100 text-red-700",
+function ResultTable() {
+  const result = {
+    sentiment: "Positive",
+    category: "Cleanliness",
+    reply:
+      "Thank you for your valuable feedback. We are delighted that you enjoyed your stay.",
   };
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow-lg mt-6">
-      <h2 className="text-2xl font-bold mb-4">
+    <div className="mt-8 bg-white rounded-2xl shadow-xl p-8">
+
+      <h2 className="text-2xl font-bold mb-6">
         Analysis Result
       </h2>
 
-      <div className="space-y-4">
+      <div className="overflow-x-auto">
+        <table className="w-full border-collapse">
 
-        <div>
-          <p className="font-semibold">Sentiment</p>
-          <span
-            className={`px-3 py-1 rounded-full text-sm font-medium ${
-              badgeColor[result.sentiment]
-            }`}
-          >
-            {result.sentiment}
-          </span>
-        </div>
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="p-3 text-left">Sentiment</th>
+              <th className="p-3 text-left">Category</th>
+              <th className="p-3 text-left">Suggested Reply</th>
+            </tr>
+          </thead>
 
-        <div>
-          <p className="font-semibold">Category</p>
-          <p>{result.category}</p>
-        </div>
+          <tbody>
+            <tr className="border-t">
 
-        <div>
-          <p className="font-semibold">
-            Suggested Response
-          </p>
-          <div className="bg-gray-50 p-3 rounded">
-            {result.reply}
-          </div>
-        </div>
+              <td className="p-3">
+                <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full font-semibold">
+                  Positive
+                </span>
+              </td>
 
+              <td className="p-3">
+                {result.category}
+              </td>
+
+              <td className="p-3">
+                {result.reply}
+              </td>
+
+            </tr>
+          </tbody>
+
+        </table>
       </div>
+
     </div>
   );
 }
