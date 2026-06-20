@@ -33,7 +33,8 @@ function ReviewForm() {
 
   return (
     <>
-      <div className="bg-white p-8 rounded-xl shadow-xl">
+      <div className="bg-white text-black p-6 rounded-xl shadow
+                dark:bg-gray-800 dark:text-white">
 
         <h2 className="text-2xl font-bold mb-4">
           Guest Review Analysis
