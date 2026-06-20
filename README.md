@@ -1,16 +1,141 @@
-# React + Vite
+# StayInsight AI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## AI-Powered Guest Review Sentiment Analyzer for Community Homestays
 
-Currently, two official plugins are available:
+### Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+StayInsight AI is an intelligent web application designed to help homestay owners and hospitality businesses analyze guest feedback efficiently. The platform collects guest reviews and uses Artificial Intelligence to determine customer sentiment, identify key service areas, and generate actionable insights.
 
-## React Compiler
+The project aims to support community-based homestays in rural and eco-tourism regions by enabling data-driven decision-making. Through automated review analysis, homestay operators can better understand customer experiences, improve service quality, enhance online reputation, and increase guest satisfaction.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Problem Statement
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Guest reviews are often scattered across multiple platforms such as Google Reviews, Booking.com, TripAdvisor, and social media. Small homestay owners lack the time and technical resources to manually analyze large volumes of feedback.
+
+StayInsight AI addresses this challenge by providing an automated system that categorizes reviews, identifies recurring issues, and suggests appropriate management responses.
+
+---
+
+## Core Features
+
+* AI-Based Sentiment Analysis (Positive, Neutral, Negative)
+* Review Theme Classification
+* Automated Response Suggestions
+* Guest Feedback Dashboard
+* Bulk Review Processing
+* Customer Satisfaction Insights
+* Future Support for Multi-Language Reviews
+
+---
+
+## Technology Stack
+
+### Frontend
+
+* React.js
+* Tailwind CSS
+* Vite
+
+### Backend (Planned)
+
+* Node.js
+* Express.js
+
+### Database (Planned)
+
+* MongoDB
+
+### AI Integration (Planned)
+
+* Google Gemini API
+* Natural Language Processing (NLP)
+
+### Version Control
+
+* Git
+* GitHub
+
+---
+
+## Project Structure
+
+```text
+StayInsightAI/
+│
+├── public/
+│
+├── src/
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   ├── ReviewForm.jsx
+│   │   └── ResultTable.jsx
+│   │
+│   ├── pages/
+│   │   └── Home.jsx
+│   │
+│   ├── services/
+│   │   └── geminiService.js
+│   │
+│   ├── App.jsx
+│   └── main.jsx
+│
+├── package.json
+├── README.md
+└── vite.config.js
+```
+
+---
+
+## Current Development Status
+
+### Week 2 Progress
+
+* Project initialization using React and Vite
+* Tailwind CSS integration
+* Responsive navigation bar
+* Guest review submission form
+* Review analysis result interface
+* Git repository setup with structured commits
+
+### Upcoming Features
+
+* Gemini API Integration
+* Sentiment Classification Engine
+* Theme Detection Module
+* MongoDB Database Integration
+* Analytics Dashboard
+* Review History Management
+* Export Reports Functionality
+
+---
+
+## Target Users
+
+* Rural Homestay Owners
+* Eco-Tourism Businesses
+* Hospitality Service Providers
+* Tourism Management Organizations
+
+---
+
+## Internship Program
+
+Technology Business Incubator (TBI)
+Graphic Era University
+Summer Internship Program 2026
+
+---
+
+## Setup
+
+Project setup and deployment instructions will be added in future development stages.
+
+---
+
+## Author
+
+Abhay Joshi
+
+B.Tech Student | Full Stack & AI Enthusiast
