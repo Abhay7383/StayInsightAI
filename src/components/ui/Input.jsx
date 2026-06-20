@@ -1,0 +1,37 @@
+/**
+ * Input Component
+ *
+ * Props:
+ * value
+ * onChange
+ * placeholder
+ * type
+ */
+
+function Input({
+  value,
+  onChange,
+  placeholder,
+  type = "text",
+}) {
+  return (
+    <input
+      type={type}
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      className="
+        w-full
+        border
+        border-gray-300
+        rounded-lg
+        p-3
+        focus:outline-none
+        focus:ring-2
+        focus:ring-blue-500
+      "
+    />
+  );
+}
+
+export default Input;
