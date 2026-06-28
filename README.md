@@ -128,9 +128,48 @@ Summer Internship Program 2026
 
 ---
 
-## Setup
+## Backend Setup
 
-Project setup and deployment instructions will be added in future development stages.
+### Install dependencies
+
+```bash
+cd backend
+npm install
+```
+
+### Configure environment variables
+
+Create a `.env` file:
+
+```
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+```
+
+### Run backend
+
+```bash
+npm run dev
+```
+
+Backend URL:
+
+```
+http://localhost:5000
+```
+
+### Run frontend
+
+```bash
+npm install
+npm run dev
+```
+
+Frontend URL:
+
+```
+http://localhost:5173
+```
 
 ---
 

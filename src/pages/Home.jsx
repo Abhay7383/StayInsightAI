@@ -1,7 +1,24 @@
+import { useEffect, useState } from "react";
 import ReviewForm from "../components/ReviewForm";
 import ResultTable from "../components/ResultTable";
+import { getReviews } from "../services/reviewService";
 
 function Home({ darkMode }) {
+  const [reviews, setReviews] = useState([]);
+
+  const loadReviews = async () => {
+    try {
+      const res = await getReviews();
+      setReviews(res.data || []);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    loadReviews();
+  }, []);
+
   return (
     <div
       className={`min-h-screen py-10 transition-all duration-300 ${
@@ -10,49 +27,24 @@ function Home({ darkMode }) {
           : "bg-gray-100 text-black"
       }`}
     >
-      <div className="max-w-4xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-4">
 
-        <div className="text-center mb-8">
-          <h2
-            className={`text-4xl font-bold ${
-              darkMode
-                ? "text-white"
-                : "text-gray-800"
-            }`}
-          >
+        <div className="text-center mb-10">
+          <h2 className="text-4xl font-bold">
             Analyze Guest Reviews
           </h2>
 
-          <p
-            className={`mt-2 ${
-              darkMode
-                ? "text-gray-300"
-                : "text-gray-600"
-            }`}
-          >
+          <p className="mt-3">
             AI-powered sentiment analysis for homestays.
           </p>
         </div>
 
-        <div
-          className={`rounded-2xl shadow-md p-6 mb-8 transition-all duration-300 ${
-            darkMode
-              ? "bg-gray-800"
-              : "bg-white"
-          }`}
-        >
-          <ReviewForm />
-        </div>
+        <ReviewForm loadReviews={loadReviews} />
 
-        <div
-          className={`rounded-2xl shadow-md p-6 transition-all duration-300 ${
-            darkMode
-              ? "bg-gray-800"
-              : "bg-white"
-          }`}
-        >
-          <ResultTable />
-        </div>
+        <ResultTable
+          reviews={reviews}
+          loadReviews={loadReviews}
+        />
 
       </div>
     </div>
