@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { analyzeReview } from "../utils/analyzeReview";
 import { createReview } from "../services/reviewService";
 
 import {
@@ -23,50 +24,27 @@ function ReviewForm({ loadReviews }) {
     setLoading(true);
 
     try {
-      // Temporary sentiment logic
-      let sentiment = "Neutral";
-      let category = "General";
+      // Analyze the review
+      const analysis = analyzeReview(review);
 
-      const text = review.toLowerCase();
-
-      if (
-        text.includes("good") ||
-        text.includes("excellent") ||
-        text.includes("great") ||
-        text.includes("amazing") ||
-        text.includes("clean") ||
-        text.includes("friendly")
-      ) {
-        sentiment = "Positive";
-        category = "Service";
-      }
-
-      if (
-        text.includes("bad") ||
-        text.includes("poor") ||
-        text.includes("dirty") ||
-        text.includes("worst") ||
-        text.includes("late")
-      ) {
-        sentiment = "Negative";
-        category = "Complaint";
-      }
-
+      // Save to MongoDB
       await createReview({
         reviewerName: "Guest",
         reviewText: review,
-        sentiment,
-        category,
-        suggestedResponse:
-          "Thank you for your valuable feedback. We appreciate your response.",
+        sentiment: analysis.sentiment,
+        category: analysis.category,
+        suggestedResponse: analysis.suggestedResponse,
       });
 
+      // Clear textbox
       setReview("");
 
+      // Reload table
       if (loadReviews) {
         await loadReviews();
       }
 
+      // Success toast
       setShowToast(true);
 
       setTimeout(() => {
@@ -136,9 +114,8 @@ function ReviewForm({ loadReviews }) {
         title="Project Information"
       >
         <p>
-          StayInsight AI helps homestay owners analyze
-          guest reviews, classify sentiments,
-          and improve customer experience.
+          StayInsight AI helps homestay owners analyze guest reviews,
+          classify sentiments, and improve customer experience.
         </p>
       </Modal>
 

@@ -43,9 +43,49 @@ StayInsight AI addresses this challenge by providing an automated system that ca
 * Node.js
 * Express.js
 
-### Database (Planned)
+## Database
 
-* MongoDB
+This project uses **MongoDB Atlas** with **Mongoose**.
+
+### Why MongoDB?
+
+- NoSQL document database
+- Flexible schema for storing guest reviews
+- Easy integration with Node.js using Mongoose
+- Cloud-hosted using MongoDB Atlas
+- Scalable and suitable for AI-generated review data
+
+## Set Up Database
+
+### 1. Create a MongoDB Atlas Cluster
+
+Create a free cluster on MongoDB Atlas.
+
+### 2. Create a `.env` file
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+```
+
+### 3. Install dependencies
+
+```bash
+cd backend
+npm install
+```
+
+### 4. Run backend
+
+```bash
+npm run dev
+```
+
+### 5. Run frontend
+
+```bash
+npm run dev
+```
 
 ### AI Integration (Planned)
 

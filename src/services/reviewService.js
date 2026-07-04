@@ -29,14 +29,14 @@ export const deleteReview = async (id) => {
 };
 
 // Update review
-export const updateReview = async (id, data) => {
-  const res = await fetch(`${API}/${id}`, {
+export const updateReview = async (id, reviewData) => {
+  const response = await fetch(`http://localhost:5000/api/reviews/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(reviewData),
   });
 
-  return await res.json();
+  return await response.json();
 };
