@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import authRoutes from "./routes/authRoutes.js";
 
 import connectDB from "./config/db.js";
 import reviewRoutes from "./routes/reviewRoutes.js";
@@ -27,6 +28,7 @@ app.get("/", (req, res) => {
 
 // Review Routes
 app.use("/api/reviews", reviewRoutes);
+app.use("/api/auth", authRoutes);
 
 // Error Middleware
 app.use(errorHandler);
