@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { analyzeReview } from "../utils/analyzeReview";
 import { createReview } from "../services/reviewService";
 
 import {
@@ -24,27 +23,43 @@ function ReviewForm({ loadReviews }) {
     setLoading(true);
 
     try {
-      // Analyze the review
-      const analysis = analyzeReview(review);
+      // Call AI Backend
+      const response = await fetch("http://localhost:5000/api/ai/analyze", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          review,
+        }),
+      });
 
-      // Save to MongoDB
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || "AI analysis failed");
+      }
+
+      const analysis = result.data;
+
+      // Save AI Result to MongoDB
       await createReview({
         reviewerName: "Guest",
         reviewText: review,
         sentiment: analysis.sentiment,
         category: analysis.category,
-        suggestedResponse: analysis.suggestedResponse,
+        suggestedResponse: analysis.reply,
       });
 
       // Clear textbox
       setReview("");
 
-      // Reload table
+      // Refresh table
       if (loadReviews) {
         await loadReviews();
       }
 
-      // Success toast
+      // Success Toast
       setShowToast(true);
 
       setTimeout(() => {
@@ -53,7 +68,7 @@ function ReviewForm({ loadReviews }) {
 
     } catch (error) {
       console.error(error);
-      alert("Failed to save review.");
+      alert(error.message || "Failed to analyze review.");
     } finally {
       setLoading(false);
     }
@@ -115,13 +130,14 @@ function ReviewForm({ loadReviews }) {
       >
         <p>
           StayInsight AI helps homestay owners analyze guest reviews,
-          classify sentiments, and improve customer experience.
+          classify sentiments using Google Gemini AI, generate smart response
+          suggestions, and improve customer experience.
         </p>
       </Modal>
 
       {showToast && (
         <Toast
-          message="Review saved successfully!"
+          message="AI Review analyzed and saved successfully!"
           type="success"
         />
       )}
