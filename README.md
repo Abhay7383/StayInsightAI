@@ -6,9 +6,9 @@
 
 ## Description
 
-StayInsight AI is an AI-assisted full stack web application developed to help homestay owners and hospitality businesses analyze guest reviews efficiently. The system performs sentiment analysis on customer feedback, categorizes reviews, stores them in a cloud database, and provides meaningful insights for improving customer satisfaction.
+StayInsight AI is an AI-assisted full stack web application developed to help homestay owners and hospitality businesses analyze guest reviews efficiently. The application uses **Google Gemini AI** to perform real-time sentiment analysis, classify guest review categories, and generate professional response suggestions. Reviews are securely stored in **MongoDB Atlas**, enabling users to manage customer feedback through a modern, responsive dashboard.
 
-The application enables users to register securely, log in using JWT authentication, manage guest reviews through a complete CRUD system, and visualize customer feedback through a clean and responsive interface.
+The application provides secure **JWT-based authentication**, complete **CRUD operations**, protected routes, AI-powered review analysis, loading indicators during AI requests, and user-friendly error handling.
 
 ---
 
@@ -16,18 +16,18 @@ The application enables users to register securely, log in using JWT authenticat
 
 Guest reviews are spread across multiple online platforms such as Google Reviews, Booking.com, Airbnb, TripAdvisor, and social media. Small homestay owners often lack the technical expertise and time required to manually analyze large volumes of customer feedback.
 
-StayInsight AI solves this problem by automatically classifying reviews, identifying customer sentiment, organizing review data, and helping owners improve service quality through data-driven insights.
+StayInsight AI solves this problem by automatically classifying reviews, identifying customer sentiment, organizing review data, and helping owners improve service quality through AI-driven insights.
 
 ---
 
 # Core Features
 
-- AI-Based Sentiment Analysis
-- Positive, Neutral and Negative Classification
-- Review Theme Classification
-- Automated Response Suggestions
+- AI-powered Review Analysis using Google Gemini
+- Sentiment Classification (Positive, Neutral, Negative)
+- Automatic Review Category Detection
+- AI-generated Response Suggestions
 - Complete Review CRUD Operations
-- MongoDB Atlas Database Integration
+- MongoDB Atlas Integration
 - RESTful Backend APIs
 - JWT Authentication
 - User Registration & Login
@@ -36,6 +36,9 @@ StayInsight AI solves this problem by automatically classifying reviews, identif
 - Search Reviews
 - Responsive User Interface
 - Dark Mode Support
+- Loading Indicator During AI Processing
+- Error Handling for AI Requests
+- Secure API Key Storage using `.env`
 - Component Library
 - Future Google OAuth Support
 
@@ -65,6 +68,11 @@ StayInsight AI solves this problem by automatically classifying reviews, identif
 
 - JWT (JSON Web Token)
 - bcryptjs
+
+## Artificial Intelligence
+
+- Google Gemini API
+- @google/genai SDK
 
 ## API Testing
 
@@ -100,6 +108,14 @@ StayInsight AI solves this problem by automatically classifying reviews, identif
 | POST | /api/auth/register | Register User |
 | POST | /api/auth/login | Login User |
 | GET | /api/auth/profile | Protected User Profile |
+
+---
+
+## AI APIs
+
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| POST | /api/ai/analyze | Analyze guest review using Gemini AI |
 
 ---
 
@@ -160,6 +176,21 @@ The application implements JWT-based authentication.
 
 ---
 
+# AI Workflow
+
+1. User enters a guest review.
+2. Frontend sends the review to **POST /api/ai/analyze**.
+3. Backend securely calls the Google Gemini API.
+4. Gemini analyzes the review.
+5. AI returns:
+   - Sentiment
+   - Review Category
+   - Professional Reply Suggestion
+6. Review is stored in MongoDB Atlas.
+7. Results are displayed in the frontend.
+
+---
+
 # Project Structure
 
 ```text
@@ -172,6 +203,7 @@ StayInsightAI/
 │   ├── controllers/
 │   │     authController.js
 │   │     reviewController.js
+│   │     aiController.js
 │   │
 │   ├── middleware/
 │   │     authMiddleware.js
@@ -184,6 +216,10 @@ StayInsightAI/
 │   ├── routes/
 │   │     authRoutes.js
 │   │     reviewRoutes.js
+│   │     aiRoutes.js
+│   │
+│   ├── services/
+│   │     geminiService.js
 │   │
 │   ├── utils/
 │   │     generateToken.js
@@ -210,14 +246,13 @@ StayInsightAI/
 │   ├── services/
 │   │     authService.js
 │   │     reviewService.js
-│   │
-│   ├── utils/
-│   │     analyzeReview.js
+│   │     geminiService.js
 │   │
 │   ├── App.jsx
 │   └── main.jsx
 │
 ├── README.md
+├── PROMPTS.md
 └── package.json
 ```
 
@@ -248,8 +283,12 @@ Create a `.env` file.
 
 ```env
 PORT=5000
+
 MONGO_URI=your_mongodb_connection_string
+
 JWT_SECRET=your_secret_key
+
+GEMINI_API_KEY=your_google_gemini_api_key
 ```
 
 ---
@@ -348,16 +387,30 @@ http://localhost:5173
 
 ---
 
+## Week 7
+
+- Google Gemini AI Integration
+- AI-powered Review Analysis
+- Sentiment Classification
+- Automatic Category Detection
+- AI-generated Response Suggestions
+- Secure Backend API Integration
+- Loading State During AI Requests
+- Error Handling for Failed Requests
+- Backend AI Endpoint (`POST /api/ai/analyze`)
+- Frontend Connected with AI Backend
+- End-to-End AI Review Analysis
+
+---
+
 # Future Enhancements
 
 - Google OAuth Login
-- Gemini API Integration
-- AI Review Summarization
 - Multi-language Review Analysis
-- Email Verification
-- Forgot Password
+- AI Review Summarization
 - Admin Dashboard
 - Analytics Dashboard
+- Review Trend Analysis
 - PDF Report Export
 - CSV Export
 - Hotel Performance Insights
@@ -369,10 +422,13 @@ http://localhost:5173
 - Home Page
 - Login Page
 - Registration Page
-- Review Dashboard
+- AI Review Analysis Screen
+- Loading State During AI Processing
+- AI-generated Analysis Output
 - CRUD Operations
-- MongoDB Database
+- MongoDB Atlas Database
 - API Testing using Postman
+- Browser Network Tab showing `POST /api/ai/analyze (200 OK)`
 
 ---
 
