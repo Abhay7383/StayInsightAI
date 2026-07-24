@@ -1,4 +1,4 @@
-import { analyzeReviewWithAI } from "../services/geminiService.js";
+import { analyzeReviewWithAI } from "../services/aiService.js";
 
 export const analyzeReview = async (req, res) => {
   try {
