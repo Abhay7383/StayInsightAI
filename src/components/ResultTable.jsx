@@ -5,7 +5,7 @@ import {
   updateReview,
 } from "../services/reviewService";
 
-// import { analyzeReview } from "../utils/analyzeReview";
+ import { analyzeReview } from "../utils/analyzeReview";
 
 function ResultTable({ reviews, loadReviews }) {
   const [editingId, setEditingId] = useState(null);
