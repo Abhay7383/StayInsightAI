@@ -263,7 +263,7 @@ StayInsightAI/
 ## Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/StayInsightAI.git
+git clone https://github.com/Abhay7383/StayInsightAI.git
 ```
 
 ---
