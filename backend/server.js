@@ -10,9 +10,6 @@ import errorHandler from "./middleware/errorMiddleware.js";
 dotenv.config();
 console.log("ENV PATH LOADED");
 console.log("PORT =", process.env.PORT);
-// console.log("GEMINI =", process.env.GEMINI_API_KEY);
-// console.log("GEMINI_API_KEY exists:", !!process.env.GEMINI_API_KEY);
-// console.log("First 8 chars:", process.env.GEMINI_API_KEY?.substring(0, 8));
 
 // Connect Database
 connectDB();
@@ -20,7 +17,17 @@ connectDB();
 const app = express();
 
 // Middleware
-app.use(cors());
+// app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://stay-insight-ai-kwe3.vercel.app",
+    ],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 // Home Route
