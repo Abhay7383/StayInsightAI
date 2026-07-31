@@ -1,46 +1,83 @@
 # StayInsight AI
 
-## AI-Powered Guest Review Sentiment Analyzer for Community Homestays
+## AI-Powered Guest Review Sentiment Analyzer
+
+StayInsight AI is a full-stack AI-powered web application that helps homestay owners and hospitality businesses analyze guest reviews automatically. The application uses Large Language Models (LLMs) through the **Groq API** to identify review sentiment, categorize feedback, and generate professional reply suggestions. Reviews are securely stored in MongoDB Atlas and can be managed through a responsive dashboard.
 
 ---
 
-## Description
+# Live Demo
 
-StayInsight AI is an AI-assisted full stack web application developed to help homestay owners and hospitality businesses analyze guest reviews efficiently. The application uses **Google Gemini AI** to perform real-time sentiment analysis, classify guest review categories, and generate professional response suggestions. Reviews are securely stored in **MongoDB Atlas**, enabling users to manage customer feedback through a modern, responsive dashboard.
+### Frontend
 
-The application provides secure **JWT-based authentication**, complete **CRUD operations**, protected routes, AI-powered review analysis, loading indicators during AI requests, and user-friendly error handling.
+https://stay-insight-ai-kwe3.vercel.app
+
+### Backend
+
+https://stayinsightai.onrender.com
+
+API Base URL
+
+```
+https://stayinsightai.onrender.com/api
+```
 
 ---
 
 # Problem Statement
 
-Guest reviews are spread across multiple online platforms such as Google Reviews, Booking.com, Airbnb, TripAdvisor, and social media. Small homestay owners often lack the technical expertise and time required to manually analyze large volumes of customer feedback.
+Guest reviews are often spread across multiple platforms such as Google Reviews, Airbnb, Booking.com, TripAdvisor, and social media. Reading every review manually is time-consuming and makes it difficult to identify recurring issues.
 
-StayInsight AI solves this problem by automatically classifying reviews, identifying customer sentiment, organizing review data, and helping owners improve service quality through AI-driven insights.
+StayInsight AI automates this process by using AI to:
+
+- Analyze customer sentiment
+- Categorize reviews
+- Generate professional responses
+- Store review history
+- Help owners improve customer satisfaction
 
 ---
 
-# Core Features
+# Features
 
-- AI-powered Review Analysis using Google Gemini
-- Sentiment Classification (Positive, Neutral, Negative)
-- Automatic Review Category Detection
-- AI-generated Response Suggestions
-- Complete Review CRUD Operations
-- MongoDB Atlas Integration
-- RESTful Backend APIs
+## Authentication
+
+- User Registration
+- User Login
 - JWT Authentication
-- User Registration & Login
 - Protected Routes
-- Review History Management
+- Password Encryption using bcryptjs
+
+---
+
+## AI Review Analysis
+
+- AI-powered sentiment analysis
+- Review category detection
+- AI-generated professional reply
+- Loading state while AI is processing
+- Error handling for failed AI requests
+
+---
+
+## Review Management
+
+- Create Reviews
+- View Reviews
+- Update Reviews
+- Delete Reviews
 - Search Reviews
-- Responsive User Interface
-- Dark Mode Support
-- Loading Indicator During AI Processing
-- Error Handling for AI Requests
-- Secure API Key Storage using `.env`
-- Component Library
-- Future Google OAuth Support
+- Persistent MongoDB storage
+
+---
+
+## User Interface
+
+- Responsive Design
+- Dark Mode
+- Clean Dashboard
+- Empty State Design
+- Loading Indicators
 
 ---
 
@@ -52,32 +89,46 @@ StayInsight AI solves this problem by automatically classifying reviews, identif
 - Vite
 - Tailwind CSS
 - React Router DOM
+- Axios
 - Context API
+
+---
 
 ## Backend
 
 - Node.js
 - Express.js
 
+---
+
 ## Database
 
 - MongoDB Atlas
 - Mongoose
 
+---
+
 ## Authentication
 
-- JWT (JSON Web Token)
+- JWT
 - bcryptjs
+
+---
 
 ## Artificial Intelligence
 
-- Google Gemini API
-- @google/genai SDK
+- Groq API
+- Llama 3.3 70B Versatile Model
 
-## API Testing
+---
 
-- Postman
-- Thunder Client
+## Deployment
+
+- Frontend: Vercel
+- Backend: Render
+- Database: MongoDB Atlas
+
+---
 
 ## Version Control
 
@@ -86,60 +137,56 @@ StayInsight AI solves this problem by automatically classifying reviews, identif
 
 ---
 
-# REST API Endpoints
+# REST API
 
-## Review APIs
-
-| Method | Endpoint | Description |
-|---------|----------|-------------|
-| GET | /api/reviews | Get all reviews |
-| GET | /api/reviews/:id | Get single review |
-| POST | /api/reviews | Create review |
-| PUT | /api/reviews/:id | Update review |
-| DELETE | /api/reviews/:id | Delete review |
-| GET | /api/reviews/search | Search reviews |
-
----
-
-## Authentication APIs
+## Authentication
 
 | Method | Endpoint | Description |
 |---------|----------|-------------|
 | POST | /api/auth/register | Register User |
 | POST | /api/auth/login | Login User |
-| GET | /api/auth/profile | Protected User Profile |
+| GET | /api/auth/profile | User Profile |
 
 ---
 
-## AI APIs
+## Reviews
 
 | Method | Endpoint | Description |
 |---------|----------|-------------|
-| POST | /api/ai/analyze | Analyze guest review using Gemini AI |
+| GET | /api/reviews | Get All Reviews |
+| GET | /api/reviews/:id | Get Single Review |
+| POST | /api/reviews | Create Review |
+| PUT | /api/reviews/:id | Update Review |
+| DELETE | /api/reviews/:id | Delete Review |
+| GET | /api/reviews/search | Search Reviews |
 
 ---
 
-# Database
+## AI
 
-This project uses **MongoDB Atlas** together with **Mongoose ODM**.
-
-## Why MongoDB?
-
-- NoSQL document database
-- Flexible schema
-- Cloud-hosted using MongoDB Atlas
-- Easy integration with Node.js
-- Highly scalable
-- Suitable for AI-generated review data
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| POST | /api/ai/analyze | Analyze Guest Review |
 
 ---
 
 # Database Schema
 
-## Review Collection
+## User
 
 | Field | Type |
-|------|------|
+|-------|------|
+| name | String |
+| email | String |
+| password | String |
+| createdAt | Date |
+
+---
+
+## Review
+
+| Field | Type |
+|-------|------|
 | reviewerName | String |
 | reviewText | String |
 | sentiment | String |
@@ -149,157 +196,101 @@ This project uses **MongoDB Atlas** together with **Mongoose ODM**.
 
 ---
 
-## User Collection
-
-| Field | Type |
-|------|------|
-| name | String |
-| email | String |
-| password | Encrypted String |
-| createdAt | Date |
-
----
-
-# Authentication
-
-The application implements JWT-based authentication.
-
-### Features
-
-- User Registration
-- User Login
-- Secure Password Hashing
-- JWT Token Generation
-- Protected Backend APIs
-- Protected Frontend Pages
-- Logout Functionality
-
----
-
 # AI Workflow
 
-1. User enters a guest review.
-2. Frontend sends the review to **POST /api/ai/analyze**.
-3. Backend securely calls the Google Gemini API.
-4. Gemini analyzes the review.
-5. AI returns:
-   - Sentiment
-   - Review Category
-   - Professional Reply Suggestion
-6. Review is stored in MongoDB Atlas.
-7. Results are displayed in the frontend.
+1. User logs into the application.
+2. User enters a guest review.
+3. Frontend sends the review to the backend.
+4. Backend securely calls the Groq API.
+5. AI analyzes the review.
+6. AI returns:
+
+- Sentiment
+- Review Category
+- Suggested Reply
+
+7. Review is stored in MongoDB Atlas.
+8. Results are displayed on the dashboard.
 
 ---
 
 # Project Structure
 
 ```text
-StayInsightAI/
+StayInsightAI
 │
-├── backend/
-│   ├── config/
-│   │     db.js
+├── backend
+│   ├── config
+│   │   └── db.js
 │   │
-│   ├── controllers/
-│   │     authController.js
-│   │     reviewController.js
-│   │     aiController.js
+│   ├── controllers
+│   │   ├── aiController.js
+│   │   ├── authController.js
+│   │   └── reviewController.js
 │   │
-│   ├── middleware/
-│   │     authMiddleware.js
-│   │     errorMiddleware.js
+│   ├── middleware
+│   │   ├── authMiddleware.js
+│   │   └── errorMiddleware.js
 │   │
-│   ├── models/
-│   │     Review.js
-│   │     User.js
+│   ├── models
+│   │   ├── Review.js
+│   │   └── User.js
 │   │
-│   ├── routes/
-│   │     authRoutes.js
-│   │     reviewRoutes.js
-│   │     aiRoutes.js
+│   ├── routes
+│   │   ├── aiRoutes.js
+│   │   ├── authRoutes.js
+│   │   └── reviewRoutes.js
 │   │
-│   ├── services/
-│   │     geminiService.js
+│   ├── services
+│   │   └── aiService.js
 │   │
-│   ├── utils/
-│   │     generateToken.js
+│   ├── utils
+│   │   └── generateToken.js
 │   │
 │   ├── .env.example
 │   ├── package.json
 │   └── server.js
 │
-├── src/
-│   ├── components/
-│   │     Navbar.jsx
-│   │     ProtectedRoute.jsx
-│   │     ReviewForm.jsx
-│   │     ResultTable.jsx
-│   │
-│   ├── context/
-│   │     AuthContext.jsx
-│   │
-│   ├── pages/
-│   │     Home.jsx
-│   │     Login.jsx
-│   │     Register.jsx
-│   │
-│   ├── services/
-│   │     authService.js
-│   │     reviewService.js
-│   │     geminiService.js
-│   │
+├── public
+│
+├── src
+│   ├── components
+│   ├── context
+│   ├── pages
+│   ├── services
 │   ├── App.jsx
 │   └── main.jsx
 │
+├── package.json
 ├── README.md
-├── PROMPTS.md
-└── package.json
+└── vite.config.js
+```
+
+---
+
+# Installation
+
+## Clone Repository
+
+```bash
+git clone https://github.com/Abhay7383/StayInsightAI.git
+
+cd StayInsightAI
 ```
 
 ---
 
 # Backend Setup
 
-## Clone Repository
-
-```bash
-git clone https://github.com/Abhay7383/StayInsightAI.git
-```
-
----
-
-## Install Backend Dependencies
-
 ```bash
 cd backend
+
 npm install
-```
 
----
-
-## Configure Environment Variables
-
-Create a `.env` file.
-
-```env
-PORT=5000
-
-MONGO_URI=your_mongodb_connection_string
-
-JWT_SECRET=your_secret_key
-
-GEMINI_API_KEY=your_google_gemini_api_key
-```
-
----
-
-## Run Backend
-
-```bash
 npm run dev
 ```
 
-Backend URL
+Backend runs on
 
 ```
 http://localhost:5000
@@ -307,21 +298,31 @@ http://localhost:5000
 
 ---
 
-# Frontend Setup
+### Backend Environment Variables
 
-Install dependencies
+Create a `.env` file inside the backend folder.
+
+```env
+PORT=5000
+
+MONGO_URI=your_mongodb_connection_string
+
+JWT_SECRET=your_jwt_secret
+
+GROQ_API_KEY=your_groq_api_key
+```
+
+---
+
+# Frontend Setup
 
 ```bash
 npm install
-```
 
-Run project
-
-```bash
 npm run dev
 ```
 
-Frontend URL
+Frontend runs on
 
 ```
 http://localhost:5173
@@ -329,116 +330,78 @@ http://localhost:5173
 
 ---
 
-# Current Development Status
+### Frontend Environment Variable
 
-## Week 2
+Create a `.env` file in the project root.
 
-- React + Vite Setup
-- Tailwind CSS
-- Navbar
-- Review Form
-- Result Interface
+```env
+VITE_API_URL=http://localhost:5000/api
+```
 
 ---
 
-## Week 3
+# Deployment
 
-- Component Library
-- Button Component
-- Input Component
-- Modal Component
-- Toast Component
-- Loader Component
+## Live Frontend
+
+https://stay-insight-ai-kwe3.vercel.app
 
 ---
 
-## Week 4
+## Live Backend
 
-- Complete REST API
-- CRUD Operations
-- MongoDB Atlas Integration
-- Error Handling Middleware
-- API Testing using Postman
-- Frontend Connected with Backend
+https://stayinsightai.onrender.com
 
 ---
 
-## Week 5
+## Deployment Platforms
 
-- Database Integration
-- Review Schema
-- CRUD Verification
-- Search API
-- MongoDB Deployment
-
----
-
-## Week 6
-
-- User Authentication
-- JWT Authorization
-- Login Page
-- Registration Page
-- Auth Context
-- Protected Routes
-- Password Encryption using bcryptjs
-- Protected Backend APIs
-- Secure API Access
+| Service | Platform |
+|----------|----------|
+| Frontend | Vercel |
+| Backend | Render |
+| Database | MongoDB Atlas |
+| AI Model | Groq |
 
 ---
 
-## Week 7
+## Known Limitations (Free Tier)
 
-- Google Gemini AI Integration
-- AI-powered Review Analysis
-- Sentiment Classification
-- Automatic Category Detection
-- AI-generated Response Suggestions
-- Secure Backend API Integration
-- Loading State During AI Requests
-- Error Handling for Failed Requests
-- Backend AI Endpoint (`POST /api/ai/analyze`)
-- Frontend Connected with AI Backend
-- End-to-End AI Review Analysis
+- Render free web services spin down after approximately 15 minutes of inactivity. The first request after idle may take 30–60 seconds.
+- MongoDB Atlas M0 cluster has limited storage and shared resources.
+- Groq free API has request limits and may occasionally return rate-limit errors during heavy traffic.
+- Vercel Hobby plan has bandwidth and build limits suitable for personal and educational projects.
 
 ---
 
 # Future Enhancements
 
 - Google OAuth Login
-- Multi-language Review Analysis
 - AI Review Summarization
-- Admin Dashboard
+- Multi-language Support
 - Analytics Dashboard
-- Review Trend Analysis
-- PDF Report Export
+- Review Trends
+- PDF Export
 - CSV Export
-- Hotel Performance Insights
+- Hotel Performance Dashboard
+- Admin Panel
 
 ---
 
-# Application Screenshots
+# Screenshots
+
+Include the following screenshots:
 
 - Home Page
 - Login Page
 - Registration Page
-- AI Review Analysis Screen
-- Loading State During AI Processing
-- AI-generated Analysis Output
-- CRUD Operations
-- MongoDB Atlas Database
-- API Testing using Postman
-- Browser Network Tab showing `POST /api/ai/analyze (200 OK)`
-
----
-
-# Internship Program
-
-Technology Business Incubator (TBI)
-
-Graphic Era University
-
-Summer Internship Program 2026
+- AI Review Analysis
+- Loading State
+- CRUD Dashboard
+- MongoDB Atlas
+- Postman API Testing
+- Deployment Dashboard
+- Responsive Mobile View
 
 ---
 
@@ -452,8 +415,11 @@ Full Stack Web Developer
 
 AI Enthusiast
 
+GitHub:
+https://github.com/Abhay7383
+
 ---
 
 # License
 
-This project is developed for educational and internship purposes under the Technology Business Incubator (TBI), Graphic Era University.
+This project was developed as part of the **Technology Business Incubator (TBI), Graphic Era University Summer Internship Program 2026** for educational purposes.
