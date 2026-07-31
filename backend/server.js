@@ -20,10 +20,17 @@ const app = express();
 // app.use(cors());
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://stay-insight-ai-kwe3.vercel.app",
-    ],
+    origin: (origin, callback) => {
+      if (
+        !origin ||
+        origin === "http://localhost:5173" ||
+        origin.endsWith(".vercel.app")
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
