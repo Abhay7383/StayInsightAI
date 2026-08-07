@@ -1,4 +1,4 @@
-const API = "http://localhost:5000/api/reviews";
+const API = `${import.meta.env.VITE_API_URL}/reviews`;
 
 // Get all reviews
 export const getReviews = async () => {
